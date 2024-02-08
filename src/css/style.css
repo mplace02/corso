@@ -1,0 +1,16 @@
+:root{
+    --sans-serif-font: 'Roboto', 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    --white-color: #fff;
+    --black-color: #000000;
+    --primary-color: #2830c8;
+    --secondary-color: #f9d443;
+    --success-color: #2eff1b;
+    --warning-color: #ffa200;
+    --alert-color: #ff0000;
+
+}
+
+body{
+font-family: var(--sans-serif-font);
+
+}
