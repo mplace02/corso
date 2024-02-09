@@ -1,98 +1,270 @@
-:root{
+:root {
     --sans-serif-font: 'Roboto', 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     --white-color: #fff;
-    --black-color: #000000;
-    --primary-color: #2830c8;
-    --secondary-color: #f9d443;
-    --success-color: #2eff1b;
-    --warning-color: #ffa200;
-    --alert-color: #ff0000;
+    --black-color: #333;
+    --primary-color: #116dbe;
+    --secondary-color: #8c0b61;
+    --success-color: #1fd355;
+    --warning-color: #e67111;
+    --alert-color: #e10c0c;
+    --gutter: 1em;
+    --container-max-w: 1280px;
+}
+
+/* metodo per affiancare con float */
+img {
+    display: inline-block;
+    max-width: 100%;
+    height: auto;
+}
+
+body {
+    font-family: var(--sans-serif-font);
+    font-size: clamp(0.875rem, 0.7672rem + 0.3448vw, 1rem);
 
 }
 
-body{
-font-family: var(--sans-serif-font);
-
-}
-a{
-    color: var(--black-color); 
+a {
     text-transform: capitalize;
     text-decoration: none;
 }
 
+.site-header-float {
+    overflow: auto;
+}
 
-/* Metodo Flex */
-.site-header{
+.site-header-float::after {
+    content: '';
+    clear: both;
+    display: table;
+}
+
+.site-header-float .site-logo-wrapper,
+.site-header-float .site-nav {
+    float: left;
+}
+
+/*END metodo per affiancare con float */
+
+/* Metodo per affiancare con metodo FLEX */
+
+.site-header {
+    position: fixed;
+    top:0;
+    left: 0;
+    right: 0;
+    z-index: 9;
+    background-color: var(--white-color);
     display: flex;
     justify-content: space-between;
-    
-    .site-logo-wrapper{
-        display: block;
-img{
-    max-width: 120px;
-}
-    }
-    li{
-margin: 16px; 
+    align-items: center;
+    li {
+        margin: 1rem;
     }
 }
 
-/* END Metodo Flex */
+.site-logo-wrapper {
+    display: block;
 
-.list-reset li{
-    display: inline-block;
+    img {
+        max-width: 5.75em;
+    }
 }
-.hamburger-btn{
-    height: 64px;
-    width: 64px;
+
+
+
+.hamburger-btn {
+    height: 2em;
+    width: 2em;
     border: none;
     padding: 0;
     background-color: transparent;
     display: none;
 }
+
 .hamburger-btn::before,
-.hamburger-btn::after{
-content: '';
-height: 2px;
-width: 100%;
-background-color: var(--black-color);
-display: block;
-margin: 4px 0;
-}
-@media screen and (max-width:992px) {
-    .hamburger-btn{
-        display: block;
-    }
-    .site-header{
-        flex-flow: row wrap;
-.site-nav{
-    display: none;
-    flex: 1 1 100%;
-    order: 9;
-    ul li{
-        display: block;
-        text-align: center;
-    }
+.hamburger-btn::after {
+    content: '';
+    height: 0.125em;
+    width: 100%;
+    background-color: var(--black-color);
+    display: block;
+    margin: 0.25em 0;
+    transition: margin .3 .3s ease-in-out, transform .3s ease-in-out;
 }
 
-    }
+.menu-is-open {
 
-    
-}
-.menu-is-open{
     .hamburger-btn::before,
-    .hamburger-btn::after{
-        margin: 0;
+    .hamburger-btn::after {
+        margin: -0.0625em 0;
         transition: margin .3s ease-in-out, transform .3s .3s ease-in-out;
     }
-    .hamburger-btn::before{
-        transform: rotate(45deg) translateY(1px);
+
+    .hamburger-btn::before {
+        transform: rotate(45deg);
     }
-    .hamburger-btn::after{
-        transform: rotate(-45deg) translateY(-1px);
+
+    .hamburger-btn::after {
+        transform: rotate(-45deg);
     }
+}
+
+/* END Metodo per affiancare con metodo FLEX */
+
+/* HERO */
+.hero {
+    position: relative;
+    overflow: hidden;
+    color: var(--white-color);
+    padding: 20em 0;
+
+    .hero-image {
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        opacity: 0.4;
     }
-    .menu-is-open .site-header.site-nav{
+
+    .hero-box-copy {
+        position: relative;
+        z-index: 1;
+
+        .hero-title {
+            font-size: 5em;
+            font-weight: 900;
+        }
+
+        .hero-copy {}
+    }
+}
+
+
+/* END HERO */
+
+/* utility classes */
+.list-reset li {
+    display: inline-block;
+}
+
+@media screen and (max-width: 992px) {
+
+    body {
+        font-size: 12px;
+    }
+
+    .hamburger-btn {
         display: block;
     }
 
+    .site-header {
+        flex-flow: row wrap;
+
+        .site-nav {
+            flex: 1 1 100%;
+            order: 9;
+            display: none;
+
+            ul li {
+                display: block;
+                text-align: center;
+            }
+        }
+
+    }
+
+    .menu-is-open .site-header .site-nav {
+        display: block;
+    }
+}
+
+.container {
+    max-width: var(--container-max-w);
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.container-gutter {
+    padding-right: var(--gutter);
+    padding-left: var(--gutter);
+}
+
+.hero {
+    .hero-box-copy {
+        max-width: 100%;
+    }
+}
+
+
+/* BOX SECTION */
+.box-section {
+    padding: 10em 0;
+    .box-section-header {
+        padding: 0 0 5em;
+
+        span{
+            width: 60em;
+            height: 3px;
+            background-color: currentColor;
+            display: inline-block;
+            margin-top: 5em;
+        }
+    }
+
+    .box-section-title {
+        font-size: 4em;
+        font-weight: 400;
+        margin-bottom: 0.25em;
+    }
+
+    .box-section-copy {
+        font-size: 1.25em;
+    }
+
+    .box-section-grid{
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1em;
+      .box-section-card{
+        flex: 1 1 calc(33.33% - 1em);
+        h3{
+            text-transform: uppercase;
+            font-weight: 500;
+            margin-bottom: 1em;
+        }
+        p{
+            line-height: 1em;
+            margin-bottom: 1em;
+        }
+      }
+
+    }
+}
+/* END BOX SECTION */
+
+/* BTN */
+.btn{  
+    color: var(--white-color);
+    background-color: var(--black-color);
+    padding: 1em 2em;
+    border-radius: 4px;
+    text-transform: uppercase;
+    display: inline-block;
+    border: 1px solid var(--black-color);
+    transition: all .3s, ease-in-out;
+}
+.btn:hover{
+    color: var(--black-color);
+    background-color: var(--white-color);
+}
+.btn.btn-light{
+    color: var(--black-color);
+    background-color: var(--white-color);
+    border: 1px solid var(--black-color);
+}
+/* END BTN */
