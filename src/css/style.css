@@ -9,6 +9,11 @@
     --alert-color: #e10c0c;
     --gutter: 1em;
     --container-max-w: 1280px;
+    --primary-gradient: linear-gradient(98deg, rgba(42, 163, 255, 1) 0%, rgba(255, 255, 255, 1)100%);
+}
+
+html {
+    scroll-behavior: smooth;
 }
 
 /* metodo per affiancare con float */
@@ -50,7 +55,7 @@ a {
 
 .site-header {
     position: fixed;
-    top:0;
+    top: 0;
     left: 0;
     right: 0;
     z-index: 9;
@@ -58,6 +63,7 @@ a {
     display: flex;
     justify-content: space-between;
     align-items: center;
+
     li {
         margin: 1rem;
     }
@@ -152,7 +158,12 @@ a {
     display: inline-block;
 }
 
-@media screen and (max-width: 992px) {
+
+@media screen and (max-width: 3000px) {
+    .box-section-grid {
+        display: flex;
+        flex-wrap: wrap;
+    }
 
     body {
         font-size: 12px;
@@ -182,6 +193,28 @@ a {
         display: block;
     }
 }
+@media screen and (max-width: 700px) {
+        .box-section-brand > *{
+
+        display: flex;
+        flex: 1 1 calc(50% - 2em);
+
+        img {
+            max-width: 8em;
+        }
+    }
+    .box-section-grid {
+        flex: 1 1 calc(50% - 5em);
+        display:inline;
+        flex-wrap: wrap;
+        gap: 1em;
+    }
+
+    .box-section-card {
+        margin-top: 2em;
+    }
+
+}
 
 .container {
     max-width: var(--container-max-w);
@@ -204,10 +237,11 @@ a {
 /* BOX SECTION */
 .box-section {
     padding: 10em 0;
+
     .box-section-header {
         padding: 0 0 5em;
 
-        span{
+        span {
             width: 60em;
             height: 3px;
             background-color: currentColor;
@@ -226,29 +260,81 @@ a {
         font-size: 1.25em;
     }
 
-    .box-section-grid{
-      display: flex;
-      flex-wrap: wrap;
-      gap: 1em;
-      .box-section-card{
-        flex: 1 1 calc(33.33% - 1em);
-        h3{
-            text-transform: uppercase;
-            font-weight: 500;
-            margin-bottom: 1em;
-        }
-        p{
-            line-height: 1em;
-            margin-bottom: 1em;
-        }
-      }
+    .box-section-grid {
+        gap: 1em;
 
+        .box-section-card {
+            flex: 1 1 calc(33.33% - 1em);
+
+            h3 {
+                text-transform: uppercase;
+                font-weight: 500;
+                margin-bottom: 1em;
+            }
+
+            p {
+                line-height: 1em;
+                margin-bottom: 1em;
+            }
+        }
+
+        .box-section-brand {
+            flex: 1 1 auto;
+
+            img {
+                max-width: 8em;
+            }
+        }
+    }
+
+
+}
+
+.box-section-grid.box-section-posts {
+    gap: 5em;
+
+    .box-section-card {
+        flex: 1 1 calc(50% - 5em);
+
+        h3 {
+            margin: 1em 0 0.5em;
+            font-size: 1.5rem;
+        }
+    }
+
+}
+
+.box-section.hero {
+    .container {
+        position: relative;
+        z-index: 1;
     }
 }
+
+.section-gradient {
+    background: var(--primary-gradient);
+    padding: 5em 0;
+    color: var(--white-color);
+
+    .container {
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+    }
+
+    .btn.btn-light {
+        border: 0;
+    }
+}
+
+h3 {
+    font-size: 2rem;
+}
+
 /* END BOX SECTION */
 
 /* BTN */
-.btn{  
+.btn {
     color: var(--white-color);
     background-color: var(--black-color);
     padding: 1em 2em;
@@ -258,13 +344,47 @@ a {
     border: 1px solid var(--black-color);
     transition: all .3s, ease-in-out;
 }
-.btn:hover{
+
+.btn:hover {
     color: var(--black-color);
     background-color: var(--white-color);
 }
-.btn.btn-light{
+
+.btn.btn-light {
     color: var(--black-color);
     background-color: var(--white-color);
     border: 1px solid var(--black-color);
 }
+
+.btn.btn-light:hover {
+    color: var(--white-color);
+    background-color: var(--black-color);
+    border: 1px solid var(--white-color);
+}
+
 /* END BTN */
+
+.site-footer {
+    background-color: var(--black-color);
+    color: var(--white-color);
+    text-align: center;
+    padding: 5em 0;
+
+    img {
+        max-width: 5em;
+    }
+
+    p {
+        font-size: 1.5rem;
+        margin: 1.5em 0;
+    }
+
+    a {
+        color: currentColor;
+        text-transform: uppercase;
+    }
+
+    li {
+        margin: 1em;
+    }
+}
